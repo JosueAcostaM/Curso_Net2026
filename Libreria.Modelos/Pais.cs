@@ -13,5 +13,8 @@ namespace Libreria.Modelos
 
         public string Nombre_Pais { get; set; }
 
+        //Lista de Autores que pertenecen a este pais
+        List<Autor>? Autores { get; set; }= new List<Autor>();
+
     }
 }

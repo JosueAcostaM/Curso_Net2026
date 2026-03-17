@@ -17,5 +17,7 @@ namespace Libreria.Modelos
 
         public string Nombre_Usuario { get; set; }
         public string Contrasena_Cliente { get; set; }
+
+        List<Prestamo>? Prestamos { get; set; } = new List<Prestamo>();
     }
 }

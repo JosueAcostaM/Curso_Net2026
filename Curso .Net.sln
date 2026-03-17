@@ -5,6 +5,8 @@ VisualStudioVersion = 17.14.36511.14 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Libreria.Modelos", "Libreria.Modelos\Libreria.Modelos.csproj", "{C1978637-CE5C-4191-B986-61802EBF5FCD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API_Libreria", "API_Libreria\API_Libreria.csproj", "{BC08724F-D619-46A7-A7FB-EAE96875029E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{C1978637-CE5C-4191-B986-61802EBF5FCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1978637-CE5C-4191-B986-61802EBF5FCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1978637-CE5C-4191-B986-61802EBF5FCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC08724F-D619-46A7-A7FB-EAE96875029E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC08724F-D619-46A7-A7FB-EAE96875029E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC08724F-D619-46A7-A7FB-EAE96875029E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC08724F-D619-46A7-A7FB-EAE96875029E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
