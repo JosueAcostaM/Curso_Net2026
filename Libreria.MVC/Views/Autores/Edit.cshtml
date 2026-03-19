@@ -1,0 +1,52 @@
+﻿@model Libreria.Modelos.Autor
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Autor</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="form-group">
+                <label asp-for="Nombres_Autor" class="control-label"></label>
+                <input asp-for="Nombres_Autor" class="form-control" />
+                <span asp-validation-for="Nombres_Autor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Apellidos_Autor" class="control-label"></label>
+                <input asp-for="Apellidos_Autor" class="form-control" />
+                <span asp-validation-for="Apellidos_Autor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fecha_Nacimiento" class="control-label"></label>
+                <input asp-for="Fecha_Nacimiento" class="form-control" />
+                <span asp-validation-for="Fecha_Nacimiento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PaisId" class="control-label">Pais</label>
+                <select asp-for="PaisId" class="form-control" asp-items="ViewBag.Paises">
+                    <option value="">-- Seleccion Pais --</option>
+                </select>
+                <span asp-validation-for="PaisId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

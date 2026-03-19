@@ -17,7 +17,14 @@ namespace Libreria.MVC.Controllers
         // GET: ClientesController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var cliente = Crud<Cliente>.GetById(id);
+
+            if (cliente == null)
+            {
+                return NotFound();
+            }
+
+            return View(cliente);
         }
 
         // GET: ClientesController/Create
@@ -29,35 +36,46 @@ namespace Libreria.MVC.Controllers
         // POST: ClientesController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Cliente cliente)
         {
             try
             {
+                Crud<Cliente>.Create(cliente);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex) 
             {
-                return View();
+                ModelState.AddModelError("", ex.Message);
+                return View(cliente);
             }
-        }
+         }
 
         // GET: ClientesController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var cliente = Crud<Cliente>.GetById(id);
+
+            if (cliente == null)
+            {
+                return NotFound();
+            }
+
+            return View(cliente);
         }
 
         // POST: ClientesController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Cliente cliente)
         {
             try
             {
+                Crud<Cliente>.Update(id, cliente);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
+                ModelState.AddModelError("", ex.Message);
                 return View();
             }
         }
@@ -65,20 +83,27 @@ namespace Libreria.MVC.Controllers
         // GET: ClientesController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var cliente = Crud<Cliente>.GetById(id);
+            if (cliente == null)
+                {
+                return NotFound();
+            }
+            return View(cliente);
         }
 
         // POST: ClientesController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, Cliente cliente)
         {
             try
             {
+                Crud<Cliente>.Delete(id);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
+                ModelState.AddModelError("", ex.Message);
                 return View();
             }
         }

@@ -17,7 +17,12 @@ namespace Libreria.MVC.Controllers
         // GET: BibliotecasController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var biblioteca = Crud<Biblioteca>.GetById(id);
+            if (biblioteca == null)
+            {
+                return NotFound();
+            }
+            return View(biblioteca);
         }
 
         // GET: BibliotecasController/Create
@@ -29,35 +34,46 @@ namespace Libreria.MVC.Controllers
         // POST: BibliotecasController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Biblioteca biblioteca)
         {
             try
             {
+                Crud<Biblioteca>.Create(biblioteca);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                ModelState.AddModelError("", ex.Message);
+                return View(biblioteca);
             }
         }
 
         // GET: BibliotecasController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var biblioteca = Crud<Biblioteca>.GetById(id);
+
+            if (biblioteca == null)
+            {
+                return NotFound();
+            }
+
+            return View(biblioteca);
         }
 
         // POST: BibliotecasController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Biblioteca biblioteca)
         {
             try
             {
+                Crud<Biblioteca>.Update(id, biblioteca);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
+                ModelState.AddModelError("", ex.Message);
                 return View();
             }
         }
@@ -65,20 +81,29 @@ namespace Libreria.MVC.Controllers
         // GET: BibliotecasController/Delete/5
         public ActionResult Delete(int id)
         {
+            var biblioteca = Crud<Biblioteca>.GetById(id);
+
+            if (biblioteca == null)
+            {
+                return NotFound();
+            }
+
             return View();
         }
 
         // POST: BibliotecasController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, Biblioteca biblioteca)
         {
             try
             {
+                Crud<Biblioteca>.Delete(id);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
+                ModelState.AddModelError("", ex.Message);
                 return View();
             }
         }
