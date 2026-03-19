@@ -25,14 +25,14 @@ namespace API_Libreria.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Pais>>> GetPais()
         {
-            return await _context.Pais.ToListAsync();
+            return await _context.Paises.ToListAsync();
         }
 
         // GET: api/Paises/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Pais>> GetPais(int id)
         {
-            var pais = await _context.Pais.FindAsync(id);
+            var pais = await _context.Paises.FindAsync(id);
 
             if (pais == null)
             {
@@ -78,7 +78,7 @@ namespace API_Libreria.Controllers
         [HttpPost]
         public async Task<ActionResult<Pais>> PostPais(Pais pais)
         {
-            _context.Pais.Add(pais);
+            _context.Paises.Add(pais);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetPais", new { id = pais.Id }, pais);
@@ -88,13 +88,13 @@ namespace API_Libreria.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePais(int id)
         {
-            var pais = await _context.Pais.FindAsync(id);
+            var pais = await _context.Paises.FindAsync(id);
             if (pais == null)
             {
                 return NotFound();
             }
 
-            _context.Pais.Remove(pais);
+            _context.Paises.Remove(pais);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -102,7 +102,7 @@ namespace API_Libreria.Controllers
 
         private bool PaisExists(int id)
         {
-            return _context.Pais.Any(e => e.Id == id);
+            return _context.Paises.Any(e => e.Id == id);
         }
     }
 }

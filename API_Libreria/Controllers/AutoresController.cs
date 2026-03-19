@@ -25,14 +25,17 @@ namespace API_Libreria.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Autor>>> GetAutor()
         {
-            return await _context.Autor.ToListAsync();
+            var autores = await _context.Autores.Include(a => a.Pais).ToListAsync();
+            return autores;
         }
 
         // GET: api/Autores/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Autor>> GetAutor(int id)
         {
-            var autor = await _context.Autor.FindAsync(id);
+    
+                var autor = await _context.Autores.Include(a => a.Pais).
+                FirstOrDefaultAsync(a => a.Id == id);
 
             if (autor == null)
             {
@@ -78,7 +81,7 @@ namespace API_Libreria.Controllers
         [HttpPost]
         public async Task<ActionResult<Autor>> PostAutor(Autor autor)
         {
-            _context.Autor.Add(autor);
+            _context.Autores.Add(autor);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetAutor", new { id = autor.Id }, autor);
@@ -88,13 +91,13 @@ namespace API_Libreria.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAutor(int id)
         {
-            var autor = await _context.Autor.FindAsync(id);
+            var autor = await _context.Autores.FindAsync(id);
             if (autor == null)
             {
                 return NotFound();
             }
 
-            _context.Autor.Remove(autor);
+            _context.Autores.Remove(autor);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -102,7 +105,7 @@ namespace API_Libreria.Controllers
 
         private bool AutorExists(int id)
         {
-            return _context.Autor.Any(e => e.Id == id);
+            return _context.Autores.Any(e => e.Id == id);
         }
     }
 }

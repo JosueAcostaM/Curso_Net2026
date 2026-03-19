@@ -14,11 +14,11 @@ namespace API_Libreria.Data
         {
         }
 
-        public DbSet<Libreria.Modelos.Autor> Autor { get; set; } = default!;
-        public DbSet<Libreria.Modelos.Pais> Pais { get; set; } = default!;
-        public DbSet<Libreria.Modelos.Biblioteca> Biblioteca { get; set; } = default!;
-        public DbSet<Libreria.Modelos.Cliente> Cliente { get; set; } = default!;
-        public DbSet<Libreria.Modelos.Libro> Libro { get; set; } = default!;
-        public DbSet<Libreria.Modelos.Prestamo> Prestamo { get; set; } = default!;
+        public DbSet<Libreria.Modelos.Autor> Autores { get; set; } = default!;
+        public DbSet<Libreria.Modelos.Pais> Paises { get; set; } = default!;
+        public DbSet<Libreria.Modelos.Biblioteca> Bibliotecas { get; set; } = default!;
+        public DbSet<Libreria.Modelos.Cliente> Clientes { get; set; } = default!;
+        public DbSet<Libreria.Modelos.Libro> Libros { get; set; } = default!;
+        public DbSet<Libreria.Modelos.Prestamo> Prestamos { get; set; } = default!;
     }
 }

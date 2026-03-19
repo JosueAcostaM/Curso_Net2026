@@ -25,14 +25,14 @@ namespace API_Libreria.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Biblioteca>>> GetBiblioteca()
         {
-            return await _context.Biblioteca.ToListAsync();
+            return await _context.Bibliotecas.ToListAsync();
         }
 
         // GET: api/Bibliotecas/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Biblioteca>> GetBiblioteca(int id)
         {
-            var biblioteca = await _context.Biblioteca.FindAsync(id);
+            var biblioteca = await _context.Bibliotecas.FindAsync(id);
 
             if (biblioteca == null)
             {
@@ -78,7 +78,7 @@ namespace API_Libreria.Controllers
         [HttpPost]
         public async Task<ActionResult<Biblioteca>> PostBiblioteca(Biblioteca biblioteca)
         {
-            _context.Biblioteca.Add(biblioteca);
+            _context.Bibliotecas.Add(biblioteca);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetBiblioteca", new { id = biblioteca.Id }, biblioteca);
@@ -88,13 +88,13 @@ namespace API_Libreria.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBiblioteca(int id)
         {
-            var biblioteca = await _context.Biblioteca.FindAsync(id);
+            var biblioteca = await _context.Bibliotecas.FindAsync(id);
             if (biblioteca == null)
             {
                 return NotFound();
             }
 
-            _context.Biblioteca.Remove(biblioteca);
+            _context.Bibliotecas.Remove(biblioteca);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -102,7 +102,7 @@ namespace API_Libreria.Controllers
 
         private bool BibliotecaExists(int id)
         {
-            return _context.Biblioteca.Any(e => e.Id == id);
+            return _context.Bibliotecas.Any(e => e.Id == id);
         }
     }
 }

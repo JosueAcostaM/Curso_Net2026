@@ -25,14 +25,17 @@ namespace API_Libreria.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Prestamo>>> GetPrestamo()
         {
-            return await _context.Prestamo.ToListAsync();
+            var prestamos= await _context.Prestamos.Include(p => p.Cliente).
+                Include(p => p.Libro).ToListAsync();
+
+            return prestamos;
         }
 
         // GET: api/Prestamos/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Prestamo>> GetPrestamo(int id)
         {
-            var prestamo = await _context.Prestamo.FindAsync(id);
+            var prestamo = await _context.Prestamos.FindAsync(id);
 
             if (prestamo == null)
             {
@@ -78,7 +81,7 @@ namespace API_Libreria.Controllers
         [HttpPost]
         public async Task<ActionResult<Prestamo>> PostPrestamo(Prestamo prestamo)
         {
-            _context.Prestamo.Add(prestamo);
+            _context.Prestamos.Add(prestamo);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetPrestamo", new { id = prestamo.Id }, prestamo);
@@ -88,13 +91,13 @@ namespace API_Libreria.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePrestamo(int id)
         {
-            var prestamo = await _context.Prestamo.FindAsync(id);
+            var prestamo = await _context.Prestamos.FindAsync(id);
             if (prestamo == null)
             {
                 return NotFound();
             }
 
-            _context.Prestamo.Remove(prestamo);
+            _context.Prestamos.Remove(prestamo);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -102,7 +105,7 @@ namespace API_Libreria.Controllers
 
         private bool PrestamoExists(int id)
         {
-            return _context.Prestamo.Any(e => e.Id == id);
+            return _context.Prestamos.Any(e => e.Id == id);
         }
     }
 }

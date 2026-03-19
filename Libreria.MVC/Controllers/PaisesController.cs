@@ -1,0 +1,86 @@
+﻿using API_Consumer;
+using Libreria.Modelos;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace Libreria.MVC.Controllers
+{
+    public class PaisesController : Controller
+    {
+        // GET: PaisesController
+        public ActionResult Index()
+        {
+            var paises= Crud<Pais>.GetAll();
+            return View(paises);
+        }
+
+        // GET: PaisesController/Details/5
+        public ActionResult Details(int id)
+        {
+            return View();
+        }
+
+        // GET: PaisesController/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: PaisesController/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(IFormCollection collection)
+        {
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: PaisesController/Edit/5
+        public ActionResult Edit(int id)
+        {
+            return View();
+        }
+
+        // POST: PaisesController/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, IFormCollection collection)
+        {
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: PaisesController/Delete/5
+        public ActionResult Delete(int id)
+        {
+            return View();
+        }
+
+        // POST: PaisesController/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, IFormCollection collection)
+        {
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+    }
+}

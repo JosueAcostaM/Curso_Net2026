@@ -48,7 +48,7 @@ namespace API_Libreria.Migrations
 
                     b.HasIndex("PaisId");
 
-                    b.ToTable("Autor");
+                    b.ToTable("Autores");
                 });
 
             modelBuilder.Entity("Libreria.Modelos.Biblioteca", b =>
@@ -69,7 +69,7 @@ namespace API_Libreria.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Biblioteca");
+                    b.ToTable("Bibliotecas");
                 });
 
             modelBuilder.Entity("Libreria.Modelos.Cliente", b =>
@@ -102,7 +102,7 @@ namespace API_Libreria.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Cliente");
+                    b.ToTable("Clientes");
                 });
 
             modelBuilder.Entity("Libreria.Modelos.Libro", b =>
@@ -132,7 +132,7 @@ namespace API_Libreria.Migrations
 
                     b.HasIndex("BibliotecaId");
 
-                    b.ToTable("Libro");
+                    b.ToTable("Libros");
                 });
 
             modelBuilder.Entity("Libreria.Modelos.Pais", b =>
@@ -149,7 +149,7 @@ namespace API_Libreria.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Pais");
+                    b.ToTable("Paises");
                 });
 
             modelBuilder.Entity("Libreria.Modelos.Prestamo", b =>
@@ -185,7 +185,7 @@ namespace API_Libreria.Migrations
 
                     b.HasIndex("LibroId");
 
-                    b.ToTable("Prestamo");
+                    b.ToTable("Prestamos");
                 });
 
             modelBuilder.Entity("Libreria.Modelos.Autor", b =>
