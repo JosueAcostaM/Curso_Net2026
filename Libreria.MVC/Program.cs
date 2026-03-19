@@ -2,6 +2,15 @@ using API_Consumer;
 using Libreria.Modelos;
 
 Crud<Pais>.EndPoint = "https://localhost:7293/api/Paises";
+Crud<Autor>.EndPoint = "https://localhost:7293/api/Autores";
+Crud<Biblioteca>.EndPoint = "https://localhost:7293/api/Bibliotecas";
+Crud<Cliente>.EndPoint = "https://localhost:7293/api/Clientes";
+Crud<Libro>.EndPoint = "https://localhost:7293/api/Libros";
+Crud<Prestamo>.EndPoint = "https://localhost:7293/api/Prestamos";
+
+
+
+
 
 
 var builder = WebApplication.CreateBuilder(args);
