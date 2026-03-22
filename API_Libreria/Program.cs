@@ -6,7 +6,7 @@ AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<API_LibreriaContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("API_Libreria") ?? throw new InvalidOperationException("Connection string 'API_LibreriaContext' not found.")));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("Libreria_Render") ?? throw new InvalidOperationException("Connection string 'API_LibreriaContext' not found.")));
 
 // Add services to the container.
 
