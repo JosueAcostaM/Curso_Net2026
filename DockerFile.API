@@ -9,8 +9,7 @@ WORKDIR /src
 COPY ["API_Libreria/API_Libreria.csproj", "API_Libreria/"]
 COPY ["Libreria.Modelos/Libreria.Modelos.csproj", "Libreria.Modelos/"]
 
-RUN dotnet restore 
-"API_Libreria/API_Libreria.csproj"
+RUN dotnet restore "API_Libreria/API_Libreria.csproj"
 
 COPY . .
 
