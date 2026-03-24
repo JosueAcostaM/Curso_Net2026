@@ -1,0 +1,26 @@
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+WORKDIR /app
+EXPOSE 8080
+ENV ASPNETCORE_URLS=http://+:8080
+
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
+
+COPY ["API_Libreria/API_Libreria.csproj", "API_Libreria/"]
+COPY ["Libreria.Modelos/Libreria.Modelos.csproj", "Libreria.Modelos/"]
+
+RUN dotnet restore 
+"API_Libreria/API_Libreria.csproj"
+
+COPY . .
+
+WORKDIR "/src/API_Libreria"
+RUN dotnet build "API_Libreria.csproj" -c Release -o /app/build
+
+FROM build AS publish
+RUN dotnet publish "API_Libreria.csproj" -c Release -o /app/publish /p:UseAppHost=false
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "API_Libreria.dll"]
