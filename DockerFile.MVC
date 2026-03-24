@@ -9,16 +9,18 @@ WORKDIR /src
 COPY ["Libreria.MVC/Libreria.MVC.csproj", "Libreria.MVC/"]
 COPY ["API_Consumer/API_Consumer.csproj", "API_Consumer/"]
 COPY ["Libreria.Modelos/Libreria.Modelos.csproj", "Libreria.Modelos/"]
+COPY ["Libreria.Servicios/Libreria.Servicios.csproj", "Libreria.Servicios/"]
 
 RUN dotnet restore "Libreria.MVC/Libreria.MVC.csproj"
 
 COPY . .
 
 WORKDIR "/src/Libreria.MVC"
+
 RUN dotnet build "Libreria.MVC.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Libreria.MVC.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "Libreria.MVC.csproj" -c Release -o /app/publish /p:UseAppHost=false /p:ErrorOnDuplicatePublishOutputFiles=false
 
 FROM base AS final
 WORKDIR /app
