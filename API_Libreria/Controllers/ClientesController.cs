@@ -47,12 +47,15 @@ namespace API_Libreria.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCliente(int id, Cliente cliente)
         {
+
             if (id != cliente.Id)
             {
                 return BadRequest();
             }
 
             _context.Entry(cliente).State = EntityState.Modified;
+
+            cliente.Contrasena_Cliente = BCrypt.Net.BCrypt.HashPassword(cliente.Contrasena_Cliente);
 
             try
             {
@@ -78,6 +81,8 @@ namespace API_Libreria.Controllers
         [HttpPost]
         public async Task<ActionResult<Cliente>> PostCliente(Cliente cliente)
         {
+            cliente.Contrasena_Cliente = BCrypt.Net.BCrypt.HashPassword(cliente.Contrasena_Cliente);
+
             _context.Clientes.Add(cliente);
             await _context.SaveChangesAsync();
 
